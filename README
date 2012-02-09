@@ -1,0 +1,4 @@
+Description: Adds a shortcut to open Power Statistics from the battery indicator. Incredibly useful for laptop users. This requires gnome-power-statistics be installed first if it is not already, to find out if it is installed just run gnome-power-statistics from a terminal.
+
+
+~1 click install from E.G.O: https://extensions.gnome.org/extension/175/battery-power-statistics-shortcut/
