@@ -6,19 +6,23 @@ const Lang = imports.lang;
 const Shell = imports.gi.Shell;
 const PopupMenu = imports.ui.popupMenu;
 
-let item, battery;
+let item, battery, battMenu;
 
 function _onPowerStatsActivate() {
     Main.overview.hide();
-    let app = Shell.AppSystem.get_default().lookup_app('gnome-power-statistics.desktop');
-    app.activate();
+    let batt = Shell.AppSystem.get_default().lookup_app('gnome-power-statistics.desktop');
+    batt.activate();
 }
 
 function enable() {
     item = new PopupMenu.PopupMenuItem(_("Power Statistics"));
     item.connect('activate', Lang.bind(item, _onPowerStatsActivate));
     let nItems = battery.numMenuItems;
+    if (battMenu.battery != null) {
     battery.addMenuItem(item, nItems - 1);
+	} else {
+    battery.addMenuItem(item);
+    }
 }
 
 function disable() {
@@ -28,11 +32,11 @@ function disable() {
 }
 
 
-let age, battMenu;
+let age;
 
 function init() {
     let current_version = Config.PACKAGE_VERSION.split('.');
-    if (current_version.length != 3 || current_version[0] != 3) throw new Error("Strange version number (extension.js:35).");
+    if (current_version.length > 4 || current_version[0] != 3) throw new Error("Strange version number (extension.js:39).");
     
     switch (current_version[1]) {
         case"2": global.log("Warning of extension [" + metadata.uuid + "]:\n              Old development release detected (" + Config.PACKAGE_VERSION + "). You should upgrade!\n");   //eak
@@ -41,8 +45,9 @@ function init() {
             break;
         case"5": global.log("Warning of extension [" + metadata.uuid + "]:\n              Development release detected (" + Config.PACKAGE_VERSION + "). Loading as a 3.6 release.\n"); //eak
         case"6": age = "new";
+        case"8":  ;
             break;
-        default: throw new Error("Strange version number (extension.js:45).");
+        default: throw new Error("Strange version number (extension.js:50).");
     }
 
     if (age=="old") battMenu = Main.panel._statusArea;
