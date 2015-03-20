@@ -2,7 +2,7 @@
 
 Adds a shortcut to open Power Statistics from the battery indicator. Incredibly useful for laptop users. 
 
-Now compatible with the system-monitor extension http://tinyurl.com/sysmon That is, if you use the system-monitor extension and chose to hide the system battery icon in it's preferences.
+Now compatible with the system-monitor extension http://tinyurl.com/sysmon That is, if you use the system-monitor extension and chose to hide the system battery icon in it's preferences. todo: rework placement
 
 Depends on: gnome-power-statistics
 
