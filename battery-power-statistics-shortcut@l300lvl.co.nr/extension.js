@@ -28,6 +28,7 @@ function init() {
         case"16":  ;
         case"18":  ;
         case"20":  ;
+        case"22":  ;
             age = "10+";
             break;
         default: throw new Error("Strange version number (extension.js:50).");
@@ -42,7 +43,8 @@ let item;
 
 function _onPowerStatsActivate() {
     Main.overview.hide();
-    let batt = Shell.AppSystem.get_default().lookup_app('gnome-power-statistics.desktop');
+    let batt = Shell.AppSystem.get_default().lookup_app('gnome-power-statistics.desktop') ||
+               Shell.AppSystem.get_default().lookup_app('org.gnome.PowerStats.desktop');
     batt.activate();
 }
 
