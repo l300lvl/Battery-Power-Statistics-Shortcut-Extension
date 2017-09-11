@@ -29,9 +29,9 @@ function init() {
         case"18":  ;
         case"20":  ;
         case"22":  ;
+        default:   ;
             age = "10+";
             break;
-        default: throw new Error("Strange version number (extension.js:50).");
     }
 
     if (age=="old") battMenu = Main.panel._statusArea.battery.menu;
